@@ -1,3 +1,4 @@
+import 'package:bst_visualizer/consts/my_colors.dart';
 import 'package:bst_visualizer/pages/homepage.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'BST',
+      theme: ThemeData(primaryColor: MyColors.primary),
       home: HomePage(),
     );
   }
