@@ -8,7 +8,8 @@ class ShapePainter extends CustomPainter {
   final radius;
   Node? root;
   final circleRadius = 20.0;
-  static const universalConstant = 3;
+  static const universalConstant = 10;
+
   ShapePainter({required this.integers, required this.radius});
   @override
   void paint(Canvas canvas, Size size) {
