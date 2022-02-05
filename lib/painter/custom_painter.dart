@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 
 class ShapePainter extends CustomPainter {
   final List<int> integers;
-  final radius = 20.0;
+  final radius;
   Node? root;
-
-  ShapePainter({required this.integers});
+  final circleRadius = 20.0;
+  static const universalConstant = 3;
+  ShapePainter({required this.integers, required this.radius});
   @override
   void paint(Canvas canvas, Size size) {
     print("In method paint" + integers.toString());
@@ -27,12 +28,12 @@ class ShapePainter extends CustomPainter {
     var path = Path();
     Offset center = Offset(size.width / 2, size.height / 20);
     print(center);
-    var xLeft = (center.dx -
-        (10 * radius)); // to where the line end i.e center on child node
-    var yLeft = (center.dy + (3 * radius));
+    // var xLeft = (center.dx -
+    //     (10 * radius)); // to where the line end i.e center on child node
+    // var yLeft = (center.dy + (3 * radius));
 
-    var xRight = (center.dx + (10 * radius));
-    var yRight = (center.dy + (3 * radius));
+    // var xRight = (center.dx + (10 * radius));
+    // var yRight = (center.dy + (3 * radius));
 
     // drawCircle(canvas, path, circlePaint, center);
     // drawData(canvas, center, 10); //root
@@ -67,8 +68,8 @@ class ShapePainter extends CustomPainter {
     // inorder(root);
 
     for (int i = 0; i < integers.length; i++) {
-      root =
-          insert(root, integers[i], center, canvas, path, circlePaint, paint);
+      root = insert(root, integers[i], center, canvas, path, circlePaint, paint,
+          universalConstant);
     }
     // inorder(root);
     root = null;
@@ -76,7 +77,7 @@ class ShapePainter extends CustomPainter {
 
   void drawCircle(Canvas canvas, Path path, Paint circlePaint, Offset center) {
     path.moveTo(center.dx, center.dy);
-    canvas.drawCircle(center, radius, circlePaint);
+    canvas.drawCircle(center, circleRadius, circlePaint);
   }
 
   void drawLeftEdge(
@@ -130,35 +131,37 @@ class ShapePainter extends CustomPainter {
   }
 
   Node? insert(Node? root, int data, Offset center, Canvas canvas, Path path,
-      Paint circlePaint, Paint paint) {
+      Paint circlePaint, Paint paint, int universalConstant) {
     if (root == null) {
       drawCircle(canvas, path, circlePaint, center);
       drawData(canvas, center, data);
       return Node(data: data, center: center);
     } else if (root.data > data) {
-      drawLeftEdge(canvas, Offset(center.dx, center.dy + radius - 2), path,
-          paint, center.dx - (10 * radius), center.dy + (3 * radius));
+      drawLeftEdge(canvas, Offset(center.dx, center.dy + circleRadius - 2),
+          path, paint, center.dx - (10 * radius), center.dy + (3 * radius));
       root.left = insert(
           root.left,
           data,
-          Offset(
-              center.dx - (10 * radius), center.dy + (3 * radius) + radius - 2),
+          Offset(center.dx - (10 * radius),
+              center.dy + (3 * radius) + circleRadius - 2),
           canvas,
           path,
           circlePaint,
-          paint);
+          paint,
+          universalConstant);
     } else {
-      drawRightEdge(canvas, Offset(center.dx, center.dy + radius - 2), path,
-          paint, center.dx + (10 * radius), center.dy + (3 * radius));
+      drawRightEdge(canvas, Offset(center.dx, center.dy + circleRadius - 2),
+          path, paint, center.dx + (10 * radius), center.dy + (3 * radius));
       root.right = insert(
           root.right,
           data,
-          Offset(
-              center.dx + (10 * radius), center.dy + (3 * radius) + radius - 2),
+          Offset(center.dx + (10 * radius),
+              center.dy + (3 * radius) + circleRadius - 2),
           canvas,
           path,
           circlePaint,
-          paint);
+          paint,
+          universalConstant);
     }
     return root;
   }

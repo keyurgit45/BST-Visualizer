@@ -18,6 +18,7 @@ class _VisualizerState extends State<Visualizer> {
   TextEditingController insert = TextEditingController();
   TextEditingController search = TextEditingController();
   TextEditingController delete = TextEditingController();
+  var _value = 20.0;
 
   bool isNumeric(String? s) {
     if (s == null) {
@@ -148,7 +149,7 @@ class _VisualizerState extends State<Visualizer> {
                   child: const Text("Delete"),
                   style: ElevatedButton.styleFrom(primary: MyColors.primary)),
               const SizedBox(
-                width: 25,
+                width: 30,
               ),
               ElevatedButton(
                   onPressed: () {
@@ -159,7 +160,7 @@ class _VisualizerState extends State<Visualizer> {
                   child: const Text("Clear All"),
                   style: ElevatedButton.styleFrom(primary: MyColors.primary)),
               const SizedBox(
-                width: 25,
+                width: 30,
               ),
               ElevatedButton(
                   onPressed: () {
@@ -173,6 +174,28 @@ class _VisualizerState extends State<Visualizer> {
                   },
                   child: const Text("Inorder Traversal"),
                   style: ElevatedButton.styleFrom(primary: MyColors.primary)),
+              SizedBox(
+                width: 80,
+              ),
+              Text(
+                "Adjust Size : ",
+                style: TextStyle(
+                    fontSize: 18,
+                    color: MyColors.primary,
+                    fontWeight: FontWeight.bold),
+              ),
+              Slider(
+                min: 5,
+                max: 50,
+                activeColor: MyColors.primary,
+                inactiveColor: Color(0xffF8BBD0),
+                value: _value,
+                onChanged: (value) {
+                  setState(() {
+                    _value = value;
+                  });
+                },
+              ),
             ],
           ),
         ),
@@ -193,7 +216,7 @@ class _VisualizerState extends State<Visualizer> {
             child: CustomPaint(
               size: Size(MediaQuery.of(context).size.width,
                   MediaQuery.of(context).size.height),
-              painter: ShapePainter(integers: integers),
+              painter: ShapePainter(integers: integers, radius: _value),
             ),
           ),
       ],

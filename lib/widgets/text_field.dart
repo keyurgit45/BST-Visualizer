@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      cursorColor: MyColors.primary,
       controller: controller,
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
