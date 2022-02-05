@@ -1,6 +1,6 @@
 import 'package:bst_visualizer/consts/my_colors.dart';
 import 'package:bst_visualizer/pages/visualization.dart';
-import 'package:bst_visualizer/painter/custom_painter.dart';
+import 'package:bst_visualizer/painter/tree_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         if (sizingInformation.deviceScreenType == DeviceScreenType.desktop) {
           return Visualizer();
         }
-        return Center(
+        return const Center(
           child: Text(
             "Please view on Laptop/Desktop",
             textAlign: TextAlign.center,

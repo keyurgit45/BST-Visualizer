@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:bst_visualizer/consts/my_colors.dart';
-import 'package:bst_visualizer/painter/custom_painter.dart';
+import 'package:bst_visualizer/painter/tree_painter.dart';
 import 'package:bst_visualizer/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:edge_alerts/edge_alerts.dart';
@@ -14,7 +14,7 @@ class Visualizer extends StatefulWidget {
 }
 
 class _VisualizerState extends State<Visualizer> {
-  List<int> integers = <int>[];
+  List<int> integers = [8, 3, 2, 1, 10, 14, 9, 7];
   TextEditingController insert = TextEditingController();
   TextEditingController search = TextEditingController();
   TextEditingController delete = TextEditingController();
@@ -186,7 +186,7 @@ class _VisualizerState extends State<Visualizer> {
               ),
               Slider(
                 min: 5,
-                max: 50,
+                max: 40,
                 activeColor: MyColors.primary,
                 inactiveColor: Color(0xffF8BBD0),
                 value: _value,
@@ -213,10 +213,15 @@ class _VisualizerState extends State<Visualizer> {
           ),
         if (integers.isNotEmpty)
           Flexible(
-            child: CustomPaint(
-              size: Size(MediaQuery.of(context).size.width,
-                  MediaQuery.of(context).size.height),
-              painter: ShapePainter(integers: integers, radius: _value),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: RepaintBoundary(
+                child: CustomPaint(
+                  size: Size(MediaQuery.of(context).size.width,
+                      MediaQuery.of(context).size.height * 2),
+                  painter: TreePainter(integers: integers, radius: _value),
+                ),
+              ),
             ),
           ),
       ],
