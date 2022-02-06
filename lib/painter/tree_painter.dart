@@ -151,7 +151,7 @@ class TreePainter extends CustomPainter {
       double xuniversalConstant,
       double yuniversalConstant) {
     if (root == null) {
-      print("$data ->" + yuniversalConstant.toString());
+      // print("$data ->" + yuniversalConstant.toString());
       drawCircle(canvas, path, circlePaint, center);
       drawData(canvas, center, data);
       return Node(data: data, center: center);
