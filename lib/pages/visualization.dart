@@ -249,12 +249,12 @@ class _VisualizerState extends State<Visualizer> {
                     },
                     child: Text(_open ? "Close" : "Inorder Traversal"),
                     style: ElevatedButton.styleFrom(primary: MyColors.primary)),
-                SizedBox(
+                const SizedBox(
                   width: 80,
                 ),
-                Text(
+                const Text(
                   "Adjust Size : ",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 18,
                       color: MyColors.primary,
                       fontWeight: FontWeight.bold),
@@ -263,7 +263,7 @@ class _VisualizerState extends State<Visualizer> {
                   min: 5,
                   max: 40,
                   activeColor: MyColors.primary,
-                  inactiveColor: Color(0xffF8BBD0),
+                  inactiveColor: const Color(0xffF8BBD0),
                   value: _value,
                   onChanged: (value) {
                     setState(() {
