@@ -61,6 +61,7 @@ class _VisualizerState extends State<Visualizer> {
   }
 
   void searchControllerInBST() {
+    searchList.clear();
     if (isNumeric(searchController.text.trim())) {
       bool isFound = search(root, int.parse(searchController.text.trim()));
       if (isFound) {
@@ -84,6 +85,7 @@ class _VisualizerState extends State<Visualizer> {
   void deleteControllerFromBST() {
     if (isNumeric(deleteController.text.trim())) {
       bool isRemoved = integers.remove(int.parse(deleteController.text.trim()));
+      root = delete(root, int.parse(deleteController.text.trim()));
       if (!isRemoved) {
         showMessage("OOPS!", "Entered number is not present in BST", 3);
       }
@@ -117,6 +119,40 @@ class _VisualizerState extends State<Visualizer> {
       searchList.add(root.data);
       return search(root.right, data);
     }
+  }
+
+  Node? delete(Node? root, int data) {
+    if (root == null) {
+      return root;
+    }
+
+    // Find the node to be deleted
+    if (data < root.data) {
+      root.left = delete(root.left, data);
+    } else if (data > root.data) {
+      root.right = delete(root.right, data);
+    } else {
+      if (root.left == null) {
+        return root.right;
+      } else if (root.right == null) {
+        return root.left;
+      }
+
+      root.data = minValue(root.right);
+      root.right = delete(root.right, root.data);
+    }
+
+    return root;
+  }
+
+  // Find the inorder successor
+  int minValue(Node? root) {
+    int minv = root!.data;
+    while (root!.left != null) {
+      minv = root.left!.data;
+      root = root.left!;
+    }
+    return minv;
   }
 
   void inorder(Node? root) {
@@ -207,6 +243,7 @@ class _VisualizerState extends State<Visualizer> {
                     onPressed: () {
                       setState(() {
                         integers.clear();
+                        root = null;
                       });
                     },
                     child: const Text("Clear All"),
