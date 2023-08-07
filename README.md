@@ -1,16 +1,36 @@
-# bst_visualizer
+# Binary Search Tree (BST) Visualizer
 
-A new Flutter project.
+## Overview
+Binary Search Tree (BST) Visualizer is a Flutter Web application that allows users to interactively visualize Binary Search Tree structures on a website. The app utilizes Flutter's custom painter to draw the tree, providing an intuitive representation.
 
-## Getting Started
+![BST Visualizer Demo](demo.if)
 
-This project is a starting point for a Flutter application.
+## Features
+- Insert Nodes: Users can insert nodes into the Binary Search Tree.
+- Search Nodes: Perform searches for specific nodes in the Binary Search Tree.
+- Delete Nodes: Delete nodes from the Binary Search Tree.
+- Inorder Traversal: View the inorder traversal of the Binary Search Tree.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
+![Screenshot 1](screenshots/screenshot1.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+![Screenshot 2](screenshots/screenshot2.png)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Installation and Usage
+1. Clone the repository:
+   ```
+   git clone https://github.com/keyurgit45/BST-Visualizer.git
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd BST-Visualizer
+   ```
+
+3. Run the app:
+   ```
+   flutter run -d chrome
+   ```
+
+## Contributing
+Contributions are welcome! Please fork the repository and create a pull request.
